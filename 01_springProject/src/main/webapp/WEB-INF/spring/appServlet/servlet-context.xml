@@ -24,5 +24,34 @@
 	<context:component-scan base-package="com.kh.spring" />
 	
 	
+	<!-- 
+		사용자가 어떤 url로 요청시 해당 이 문서가 읽혀짐
+		HandlerMapping을 통해 어떤 url로 요청시 어떤 controller를 구동시킬것인지 알아내야 함. 
+			(해당 controller가 실행되도록)
+		1. 요청할 때마다 실행할 controller 클래스틀이 스프링의 관리대상으로 지정되어야 함(bean 등록)
+		2. 어떤 url로 요청시 어떤 controller를 구동시킬것인지 매핑시키는 handelerMapping 관련 클래스를 bean으로 등록
+	 	
+	 	1.
+	 	<bean class="com.kh.spring.member.controller.MemberController"/>
+	 	<bean class="com.kh.spring.board.controller.BoardController" />
+	 	
+	 	2. 과정
+	 	<beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+			<bean>
+				<beans:props>
+					<beans:prop key="insert.me">MemberController</beans:prop>
+					<beans:prop key="list,bo">BoardController</beans:prop>
+				</bean>
+			</bean>
+	 	</beans:>
+	 	
+	 	위의 방식: XML 방식 
+	 	  -장점 : xml문서 내에 한눈에 볼 수 있어 편의성은 높음
+	 	  -단점 : 단, bean의 개수가 많아지면 관리 어려움 / 여러 개발자가 같은 xml파일 수정시 충돌발생 우려.
+	 -->
+	
+	
+	
+	
 	
 </beans:beans>
