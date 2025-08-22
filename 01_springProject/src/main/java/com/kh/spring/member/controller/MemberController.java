@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.service.MemberServiceImpl;
@@ -93,7 +94,7 @@ public class MemberController {
 	 * 
 	 * 1. 스프링에서 제공하는 Model객체를 사용하는 방법. 포워딩할 뷰로 전달하고자 하는 데이터를 맵 형식(key - value)으로 담을
 	 * 수 있는 영역 model객체 : requestScope 단, setAttribute가 아닌 addAttribute 메소드 이용.
-	 */
+	 */      /*
 	@RequestMapping("login.me")
 	public String loginMember(Member m, Model model, HttpSession session) {
 
@@ -107,6 +108,39 @@ public class MemberController {
 			return "redirect:/"; // url 재요청 구문
 		}
 
+	}    */
+	
+	
+	/*
+	  2. 스프링에서 제공하는 ModelAndView 객체를 이용.
+	    - Model : 데이터를 맵형식(k - v) 세트로 담을 수 있는 공간.
+	    - View  : 응답뷰에 대한 정보를 담을 수 있는 공간
+	*/
+	@RequestMapping("login.me")
+	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv) {
+
+		Member loginUser = mService.loginMember(m);
+
+		if (loginUser == null) {// 로그인 실패, errorPage포워딩
+			mv.addObject("errorMsg", "로그인실패");
+			mv.setViewName("common/errorPage");
+		} else {// 로그인 성공, 메인페이지
+			session.setAttribute("loginUser", loginUser);
+			mv.setViewName("redirect:/");
+		}
+		return mv;
+
 	}
+	
+	
+	@RequestMapping("logout.me")
+	public String logoutMember(HttpSession session) {
+		//세션 만료시킨 후, 메인화면으로
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	
+	
 
 }
