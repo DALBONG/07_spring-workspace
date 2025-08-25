@@ -96,4 +96,6 @@
 	 where user_id = #{ userId }
 	   and status = 'Y'
 	</update>
+	
+
 </mapper>

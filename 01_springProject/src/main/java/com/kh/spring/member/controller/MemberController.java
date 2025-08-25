@@ -146,6 +146,7 @@ public class MemberController {
 			//로그인 성공
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
+			
 		}else {
 			//로그인 실패
 			mv.addObject("errorMsg", "로그인실패");

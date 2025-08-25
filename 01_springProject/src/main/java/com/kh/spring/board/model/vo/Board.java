@@ -1,14 +1,28 @@
 package com.kh.spring.board.model.vo;
 
+import java.sql.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Board {
 	
-	BOARD_NO private int boardNo;
-	BOARD_TITLE private String boardTitle;
-	BOARD_WRITER private String boardWriter;
-	BOARD_CONTENT private String boardContent;
-	ORIGIN_NAME private String 
-	CHANGE_NAME
-	COUNT
-	CREATE_DATE
-	STATUS
+	private int boardNo;
+	private String boardTitle;
+	private String boardWriter;
+	private String boardContent;
+	private String originName;
+	private String changeName;  // "resources/uploadFiles/xxx.jpg"
+	private int count;
+	private String createDate;
+	private String status;
 }

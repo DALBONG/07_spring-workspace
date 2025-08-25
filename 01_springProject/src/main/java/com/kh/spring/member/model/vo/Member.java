@@ -16,11 +16,11 @@ import lombok.ToString;
 	   4. 주의사항! 필드를 만들 땐 앞의 2글자는 최소한 소문자로!
 	*/
 
-@NoArgsConstructor // 기본생성자
-@AllArgsConstructor // 전체 매개변수 생성자
-@Getter	// getter
-@Setter // setter
-@ToString // toString
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Member {
 
 	private String userId;
